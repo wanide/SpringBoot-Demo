@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>欢迎使用员工管理系统</title>
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+
+<body><a th:href="@{/logout}" style="float: right" class="btn btn-primary">注销</a>
+<div class="container">
+
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+					<h3>员工管理</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 column" >
+				<a class="btn btn-primary" th:href="@{/toAddEmp}">新增员工</a>
+			</div>
+			<div class="col-md-4 column" ></div>
+			<div class="col-md-4 column" >
+				<form th:action="@{/queryEmp}" method="post" style="float: right" class="form-inline">
+					<input type="text" name="name" class="form-control" placeholder="请输入要查询的员工姓名">
+					<input type="submit" value="查询" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-hover table-striped">
+				<thead>
+				<tr>
+					<th>工号</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>职位</th>
+					<th>部门</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="emps:${emp}">
+					<td th:text="${emps.getId()}"></td>
+					<td th:text="${emps.getName()}"></td>
+					<td th:text="${emps.getSex()}"></td>
+					<td th:text="${emps.getPosition()}"></td>
+					<td th:text="${emps.getDepartment()}"></td>
+					<td>
+						<a class="btn btn-sm btn-primary" th:href="@{/toUpdate/}+${emps.getName()}">编辑</a> |
+						<a class="btn btn-sm btn-danger" th:href="@{/deleteEmp/}+${emps.getName()}">删除</a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyr.mapper.EmpMapper">
+    <select id="getAllEmp" resultType="Employee">
+        select * from employee
+    </select>
+
+    <insert id="addEmp" parameterType="Employee">
+        insert into employee (name,sex,position,department) values (#{name},#{sex},#{position},#{department})
+    </insert>
+
+    <delete id="deleteEmp" parameterType="String">
+        delete from employee where name=#{name}
+    </delete>
+
+    <update id="updateEmp" parameterType="Employee">
+        update employee set name=#{name},sex=#{sex},position=#{position},department=#{department} where id=#{id}
+    </update>
+
+    <select id="getEmpByName" parameterType="String" resultType="Employee">
+        select * from employee where name=#{name}
+    </select>
+</mapper>

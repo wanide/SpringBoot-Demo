@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h3>增加员工</h3>
+            </div>
+        </div>
+    </div>
+
+    <form th:action="@{/updateEmp}" method="post">
+        <input type="hidden" name="id" th:value="${emp.getId()}">
+        <div class="form-group">
+            <label>姓名</label>
+            <input th:value="${emp.getName()}" type="text" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>性别</label>
+            <div class="form-check form-check-inline" >
+                <input th:checked="${emp.getSex()==1}" class="form-check-input" type="radio" name="sex" value="1">
+                <label class="form-check-label">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input th:checked="${emp.getSex()==0}" class="form-check-input" type="radio" name="sex" value="0">
+                <label class="form-check-label">女</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>职位</label>
+            <input th:value="${emp.getPosition()}" type="text" name="position" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>部门</label>
+            <input th:value="${emp.getDepartment()}" type="text" name="department" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">确定修改</button>
+    </form>
+</div>
+</body>
+</html>
